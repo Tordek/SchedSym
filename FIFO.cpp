@@ -1,25 +1,28 @@
 #include <queue>
+#include <iostream>
 #include "Planificador.h"
 #include "FIFO.h"
 
 using namespace std;
 
-FIFO::FIFO(size_t quantum) {
-    m_quantum = quantum;
-}
+FIFO::FIFO() {}
 
 bool FIFO::haFinalizado() {
     return m_procesoActual == NULL && m_procesos.size() == 0;
 }
 
 void FIFO::tick() {
-    m_procesoActual->tick();
+    m_clock++;
 
-    if(m_procesoActual->getEstado() == FINALIZADO) {
+    if(m_procesoActual == NULL) {
         m_proximoProceso();
-    } else if(++m_tiempoProcesoActual > m_quantum) {
-        m_procesos.push(m_procesoActual);
-        m_proximoProceso();
+    } else {
+        m_procesoActual->tick();
+
+        if(m_procesoActual->getEstado() == FINALIZADO) {
+            m_cambiosDeContexto++;
+            m_proximoProceso();
+        }
     }
 }
 
@@ -28,7 +31,6 @@ void FIFO::m_proximoProceso() {
         m_procesoActual = NULL;
     } else {
         m_procesoActual = m_procesos.front();
-        m_tiempoProcesoActual = 0;
         m_procesos.pop();
     }
 }
@@ -36,16 +38,7 @@ void FIFO::m_proximoProceso() {
 void FIFO::agregarProceso(Proceso *p) {
     if(m_procesoActual == NULL) {
         m_procesoActual = p;
-        m_tiempoProcesoActual = 0;
     } else {
         m_procesos.push(p);
     }
-}
-
-size_t FIFO::getQuantum() {
-    return m_quantum;
-}
-
-void FIFO::setQuantum(size_t quantum) {
-    m_quantum = quantum;
 }

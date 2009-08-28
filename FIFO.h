@@ -6,9 +6,7 @@
 
 class FIFO : public Planificador {
     public:
-        FIFO(size_t quantum=5);
-        size_t getQuantum();
-        void setQuantum(size_t quantum);
+        FIFO();
         /* Heredado */
         void tick();
         void agregarProceso(Proceso *p);
@@ -17,8 +15,6 @@ class FIFO : public Planificador {
     private:
         Proceso *m_procesoActual;
         queue<Proceso *> m_procesos;
-        size_t m_tiempoProcesoActual;
-        size_t m_quantum;
         void m_proximoProceso();
 };
 
