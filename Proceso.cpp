@@ -5,16 +5,18 @@
 #define RETRASO_IO 5
 #define DURACION   20
 
-Proceso::Proceso(size_t id) {
-    m_id = id;
+Proceso::Proceso(size_t id) : m_id(id) {
+    m_estado = LISTO;
+    m_clock = 0;
+    m_tiempo_en_io = 0;
 }
 
 void Proceso::tick() {
-    if(m_estado == ESPERA_IO && ++m_tiempo_en_io > RETRASO_IO) {
+    if(m_estado == ESPERA_IO && ++m_tiempo_en_io >= RETRASO_IO) {
         m_estado = LISTO;
-    } else if(++m_clock > DURACION) {
+    } else if(++m_clock >= DURACION) {
         m_estado = FINALIZADO;
-    } else if(INICIO_IO < m_clock && m_clock < FIN_IO) {
+    } else if(INICIO_IO < m_clock && m_clock <= FIN_IO) {
         m_estado = ESPERA_IO;
     }
 }

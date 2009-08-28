@@ -12,11 +12,11 @@ class Proceso {
         void tick();
         Estado getEstado();
         Proceso(size_t id);
+        size_t getId() { return m_id; };
 
     private:
+        size_t const m_id;
         Estado m_estado;
-        string nombre;
-        size_t m_id;
         int m_clock;
         int m_tiempo_en_io;
 };
