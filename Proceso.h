@@ -13,6 +13,7 @@ class Proceso {
         Estado getEstado();
         Proceso(size_t id);
         size_t getId() { return m_id; };
+        void hacerIO();
 
     private:
         size_t const m_id;

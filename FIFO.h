@@ -11,6 +11,7 @@ class FIFO : public Planificador {
         void tick();
         void agregarProceso(Proceso *p);
         bool haFinalizado();
+        void hacerIO();
 
     private:
         Proceso *m_procesoActual;

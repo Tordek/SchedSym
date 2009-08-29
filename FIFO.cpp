@@ -17,12 +17,20 @@ void FIFO::tick() {
     if(m_procesoActual == NULL) {
         m_proximoProceso();
     } else {
-        m_procesoActual->tick();
-
-        if(m_procesoActual->getEstado() == FINALIZADO) {
+        if(m_procesoActual->getEstado() == LISTO) {
+            m_procesoActual->tick();
+        } else if(m_procesoActual->getEstado() == FINALIZADO) {
             m_cambiosDeContexto++;
             m_proximoProceso();
+        } else {
+            m_ciclosMuertos++;
         }
+    }
+}
+
+void FIFO::hacerIO() {
+    if(m_procesoActual->getEstado() == ESPERA_IO) {
+        m_procesoActual->hacerIO();
     }
 }
 
