@@ -5,9 +5,9 @@
  * Planificador trivial: FIFO.
  */
 
+#include "./FIFO.h"
 #include <queue>
 #include "./Planificador.h"
-#include "./FIFO.h"
 
 FIFO::FIFO() {}
 
@@ -24,7 +24,6 @@ void FIFO::tick() {
         if (m_procesoActual->getEstado() == LISTO) {
             m_procesoActual->tick();
         } else if (m_procesoActual->getEstado() == FINALIZADO) {
-            m_cambiosDeContexto++;
             m_proximoProceso();
         } else {
             m_ciclosMuertos++;

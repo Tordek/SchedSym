@@ -17,9 +17,10 @@ class Planificador {
         virtual bool haFinalizado() = 0;
         virtual void hacerIO() = 0;
         virtual ~Planificador() { }
-        unsigned int getClock() { return m_clock; }
-        unsigned int getCambiosDeContexto() { return m_cambiosDeContexto; }
-        unsigned int getCiclosMuertos() { return m_ciclosMuertos; }
+
+        unsigned int getClock() const { return m_clock; }
+        unsigned int getCambiosDeContexto() const { return m_cambiosDeContexto; }
+        unsigned int getCiclosMuertos() const { return m_ciclosMuertos; }
 
     protected:
         unsigned int m_clock;

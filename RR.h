@@ -19,9 +19,9 @@ class RR : public Planificador {
         unsigned int getQuantum();
         void setQuantum(unsigned int quantum);
         /* Heredado */
-        void tick();
-        void agregarProceso(Proceso *p);
-        bool haFinalizado();
+        virtual void tick();
+        virtual void agregarProceso(Proceso *p);
+        virtual bool haFinalizado();
 
     private:
         Proceso *m_procesoActual;

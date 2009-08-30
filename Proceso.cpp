@@ -13,10 +13,10 @@
 #define RETRASO_IO 2
 #define DURACION   20
 
-Proceso::Proceso(unsigned int id) : m_id(id) {
-    m_estado = LISTO;
-    m_clock = 0;
-    m_tiempo_en_io = 0;
+Proceso::Proceso(unsigned int id) : m_id(id),
+                                    m_estado(LISTO),
+                                    m_clock(0),
+                                    m_tiempo_en_io(0) {
 }
 
 void Proceso::hacerIO() {
@@ -33,6 +33,6 @@ void Proceso::tick() {
     }
 }
 
-Estado Proceso::getEstado() {
+Estado Proceso::getEstado() const {
     return m_estado;
 }

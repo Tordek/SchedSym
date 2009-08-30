@@ -14,8 +14,8 @@ class Proceso {
     public:
         explicit Proceso(unsigned int);
         void tick();
-        Estado getEstado();
-        unsigned int getId() { return m_id; }
+        Estado getEstado() const;
+        unsigned int getId() const { return m_id; }
         void hacerIO();
 
     private:

@@ -17,10 +17,10 @@ class FIFO : public Planificador {
     public:
         FIFO();
         /* Heredado */
-        void tick();
-        void agregarProceso(Proceso *p);
-        bool haFinalizado();
-        void hacerIO();
+        virtual void tick();
+        virtual void agregarProceso(Proceso *p);
+        virtual bool haFinalizado();
+        virtual void hacerIO();
 
     private:
         Proceso *m_procesoActual;
