@@ -5,7 +5,7 @@
  * Planificador simple: Round Robin.
  */
 
-#include "./RR.h"
+#include "./rr.h"
 
 RR::RR(unsigned int quantum) : m_quantum(quantum) {
 }

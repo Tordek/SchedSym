@@ -8,7 +8,7 @@
 #ifndef _PLANIFICADOR_H_
 #define _PLANIFICADOR_H_
 
-#include "./Proceso.h"
+#include "./proceso.h"
 
 class Planificador {
     public:

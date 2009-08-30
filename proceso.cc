@@ -6,7 +6,7 @@
  * Implementación.
  */
 
-#include "./Proceso.h"
+#include "./proceso.h"
 
 #define INICIO_IO  5
 #define FIN_IO     7

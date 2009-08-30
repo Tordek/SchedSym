@@ -5,9 +5,9 @@
  * Planificador trivial: FIFO.
  */
 
-#include "./FIFO.h"
+#include "./fifo.h"
 #include <queue>
-#include "./Planificador.h"
+#include "./planificador.h"
 
 FIFO::FIFO() {}
 

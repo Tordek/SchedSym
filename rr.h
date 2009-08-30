@@ -2,30 +2,33 @@
  *
  * SchedSym - Simulador de Planificacion de Procesos.
  *
- * Planificador trivial: FIFO.
+ * Planificador simple: Round Robin.
  */
 
-#ifndef _FIFO_H_
-#define _FIFO_H_
+#ifndef _RR_H_
+#define _RR_H_
 
 #include <queue>
-#include "./Planificador.h"
+#include "./planificador.h"
 
 using std::queue;
 
-class FIFO : public Planificador {
+class RR : public Planificador {
     public:
-        FIFO();
+        explicit RR(unsigned int quantum = 5);
+        unsigned int getQuantum();
+        void setQuantum(unsigned int quantum);
         /* Heredado */
         virtual void tick();
         virtual void agregarProceso(Proceso *p);
         virtual bool haFinalizado();
-        virtual void hacerIO();
 
     private:
         Proceso *m_procesoActual;
         queue<Proceso *> m_procesos;
+        unsigned int m_tiempoProcesoActual;
+        unsigned int const m_quantum;
         void m_proximoProceso();
 };
 
-#endif  // _FIFO_H_
+#endif  // _RR_H_

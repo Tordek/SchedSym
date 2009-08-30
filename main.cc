@@ -6,8 +6,8 @@
  */
 
 #include <cstdio>
-#include "./FIFO.h"
-//#include "./RR.h"
+#include "./fifo.h"
+//#include "./rr.h"
 
 #define RETRASO_IO 5
 
