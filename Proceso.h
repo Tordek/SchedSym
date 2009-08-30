@@ -1,25 +1,28 @@
-#ifndef _Proceso_h_included_
-#define _Proceso_h_included_
+/* Copyright 2009 - Guillermo O. Freschi
+ *
+ * SchedSym - Simulador de Planificacion de Procesos.
+ *
+ * Clase Base de Proceso Simulado.
+ */
 
-#include<string>
-
-using namespace std;
+#ifndef _PROCESO_H_
+#define _PROCESO_H_
 
 enum Estado { LISTO, ACTIVO, ESPERA_IO, FINALIZADO };
 
 class Proceso {
     public:
+        explicit Proceso(unsigned int);
         void tick();
         Estado getEstado();
-        Proceso(size_t id);
-        size_t getId() { return m_id; };
+        unsigned int getId() { return m_id; }
         void hacerIO();
 
     private:
-        size_t const m_id;
+        unsigned int const m_id;
         Estado m_estado;
         int m_clock;
         int m_tiempo_en_io;
 };
 
-#endif
+#endif  // _PROCESO_H_

@@ -1,14 +1,23 @@
-#ifndef _RR_h_included_
-#define _RR_h_included_
+/* Copyright 2009 - Guillermo O. Freschi
+ *
+ * SchedSym - Simulador de Planificacion de Procesos.
+ *
+ * Planificador simple: Round Robin.
+ */
+
+#ifndef _RR_H_
+#define _RR_H_
 
 #include <queue>
-#include "Planificador.h"
+#include "./Planificador.h"
+
+using std::queue;
 
 class RR : public Planificador {
     public:
-        RR(size_t quantum=5);
-        size_t getQuantum();
-        void setQuantum(size_t quantum);
+        explicit RR(unsigned int quantum = 5);
+        unsigned int getQuantum();
+        void setQuantum(unsigned int quantum);
         /* Heredado */
         void tick();
         void agregarProceso(Proceso *p);
@@ -17,9 +26,9 @@ class RR : public Planificador {
     private:
         Proceso *m_procesoActual;
         queue<Proceso *> m_procesos;
-        size_t m_tiempoProcesoActual;
-        size_t m_quantum;
+        unsigned int m_tiempoProcesoActual;
+        unsigned int const m_quantum;
         void m_proximoProceso();
 };
 
-#endif
+#endif  // _RR_H_

@@ -1,9 +1,14 @@
-#ifndef _Planificador_h_included_
-#define _Planificador_h_included_
+/* Copyright 2009 - Guillermo O. Freschi
+ *
+ * SchedSym - Simulador de Planificacion de Procesos.
+ *
+ * Clase Base de Proceso Simulado.
+ */
 
-#include "Proceso.h"
+#ifndef _PLANIFICADOR_H_
+#define _PLANIFICADOR_H_
 
-using namespace std;
+#include "./Proceso.h"
 
 class Planificador {
     public:
@@ -11,14 +16,15 @@ class Planificador {
         virtual void agregarProceso(Proceso *p) = 0;
         virtual bool haFinalizado() = 0;
         virtual void hacerIO() = 0;
-        size_t getClock() { return m_clock; }
-        size_t getCambiosDeContexto() { return m_cambiosDeContexto; }
-        size_t getCiclosMuertos() { return m_ciclosMuertos; }
+        virtual ~Planificador() { }
+        unsigned int getClock() { return m_clock; }
+        unsigned int getCambiosDeContexto() { return m_cambiosDeContexto; }
+        unsigned int getCiclosMuertos() { return m_ciclosMuertos; }
 
     protected:
-        size_t m_clock;
-        size_t m_cambiosDeContexto;
-        size_t m_ciclosMuertos;
+        unsigned int m_clock;
+        unsigned int m_cambiosDeContexto;
+        unsigned int m_ciclosMuertos;
 };
 
-#endif
+#endif  // _PLANIFICADOR_H_

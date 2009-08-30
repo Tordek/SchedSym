@@ -1,11 +1,13 @@
-#include <queue>
-#include "Planificador.h"
-#include "RR.h"
+/* Copyright 2009 - Guillermo O. Freschi
+ *
+ * SchedSym - Simulador de Planificacion de Procesos.
+ *
+ * Planificador simple: Round Robin.
+ */
 
-using namespace std;
+#include "./RR.h"
 
-RR::RR(size_t quantum) {
-    m_quantum = quantum;
+RR::RR(unsigned int quantum) : m_quantum(quantum) {
 }
 
 bool RR::haFinalizado() {
@@ -14,12 +16,12 @@ bool RR::haFinalizado() {
 
 void RR::tick() {
     m_clock++;
-    if(m_procesoActual != NULL) {
+    if (m_procesoActual != NULL) {
         m_procesoActual->tick();
 
-        if(m_procesoActual->getEstado() == FINALIZADO) {
+        if (m_procesoActual->getEstado() == FINALIZADO) {
             m_proximoProceso();
-        } else if(++m_tiempoProcesoActual > m_quantum) {
+        } else if (++m_tiempoProcesoActual > m_quantum) {
             m_cambiosDeContexto++;
             m_procesos.push(m_procesoActual);
             m_proximoProceso();
@@ -30,8 +32,8 @@ void RR::tick() {
 }
 
 void RR::m_proximoProceso() {
-    if(m_procesos.size() == 0) {
-       if(m_procesoActual->getEstado() == FINALIZADO) {
+    if (m_procesos.size() == 0) {
+       if (m_procesoActual->getEstado() == FINALIZADO) {
             m_procesoActual = NULL;
         }
     } else {
@@ -42,7 +44,7 @@ void RR::m_proximoProceso() {
 }
 
 void RR::agregarProceso(Proceso *p) {
-    if(m_procesoActual == NULL) {
+    if (m_procesoActual == NULL) {
         m_procesoActual = p;
         m_tiempoProcesoActual = 0;
     } else {
@@ -50,10 +52,6 @@ void RR::agregarProceso(Proceso *p) {
     }
 }
 
-size_t RR::getQuantum() {
+unsigned int RR::getQuantum() {
     return m_quantum;
-}
-
-void RR::setQuantum(size_t quantum) {
-    m_quantum = quantum;
 }

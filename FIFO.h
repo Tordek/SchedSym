@@ -1,8 +1,17 @@
-#ifndef _FIFO_h_included_
-#define _FIFO_h_included_
+/* Copyright 2009 - Guillermo O. Freschi
+ *
+ * SchedSym - Simulador de Planificacion de Procesos.
+ *
+ * Planificador trivial: FIFO.
+ */
+
+#ifndef _FIFO_H_
+#define _FIFO_H_
 
 #include <queue>
-#include "Planificador.h"
+#include "./Planificador.h"
+
+using std::queue;
 
 class FIFO : public Planificador {
     public:
@@ -19,4 +28,4 @@ class FIFO : public Planificador {
         void m_proximoProceso();
 };
 
-#endif
+#endif  // _FIFO_H_
