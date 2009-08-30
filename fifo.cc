@@ -12,44 +12,42 @@
 FIFO::FIFO() {}
 
 bool FIFO::haFinalizado() {
-    return m_procesoActual == NULL && m_procesos.size() == 0;
+    return proceso_actual_ == NULL && procesos_.size() == 0;
 }
 
 void FIFO::tick() {
-    m_clock++;
+    clock_++;
 
-    if (m_procesoActual == NULL) {
-        m_proximoProceso();
+    if (proceso_actual_ == NULL) {
+        proximoProceso();
+    } else if (proceso_actual_->getEstado() == LISTO) {
+        proceso_actual_->tick();
+    } else if (proceso_actual_->getEstado() == FINALIZADO) {
+        proximoProceso();
     } else {
-        if (m_procesoActual->getEstado() == LISTO) {
-            m_procesoActual->tick();
-        } else if (m_procesoActual->getEstado() == FINALIZADO) {
-            m_proximoProceso();
-        } else {
-            m_ciclosMuertos++;
-        }
+        ciclos_muertos_++;
     }
 }
 
 void FIFO::hacerIO() {
-    if (m_procesoActual->getEstado() == ESPERA_IO) {
-        m_procesoActual->hacerIO();
+    if (proceso_actual_->getEstado() == ESPERA_IO) {
+        proceso_actual_->hacerIO();
     }
 }
 
-void FIFO::m_proximoProceso() {
-    if (m_procesos.size() == 0) {
-        m_procesoActual = NULL;
+void FIFO::proximoProceso() {
+    if (procesos_.size() == 0) {
+        proceso_actual_ = NULL;
     } else {
-        m_procesoActual = m_procesos.front();
-        m_procesos.pop();
+        proceso_actual_ = procesos_.front();
+        procesos_.pop();
     }
 }
 
 void FIFO::agregarProceso(Proceso *p) {
-    if (m_procesoActual == NULL) {
-        m_procesoActual = p;
+    if (proceso_actual_ == NULL) {
+        proceso_actual_ = p;
     } else {
-        m_procesos.push(p);
+        procesos_.push(p);
     }
 }

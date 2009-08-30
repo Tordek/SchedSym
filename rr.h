@@ -24,11 +24,12 @@ class RR : public Planificador {
         virtual bool haFinalizado();
 
     private:
-        Proceso *m_procesoActual;
-        queue<Proceso *> m_procesos;
-        unsigned int m_tiempoProcesoActual;
-        unsigned int const m_quantum;
-        void m_proximoProceso();
+        void proximoProceso();
+
+        Proceso* proceso_actual_;
+        queue<Proceso *> procesos_;
+        unsigned int tiempo_proceso_actual_;
+        unsigned int const quantum_;
 };
 
 #endif  // _RR_H_

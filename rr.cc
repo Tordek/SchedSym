@@ -7,51 +7,51 @@
 
 #include "./rr.h"
 
-RR::RR(unsigned int quantum) : m_quantum(quantum) {
+RR::RR(unsigned int quantum) : quantum_(quantum) {
 }
 
 bool RR::haFinalizado() {
-    return m_procesoActual == NULL && m_procesos.size() == 0;
+    return proceso_actual_ == NULL && procesos_.size() == 0;
 }
 
 void RR::tick() {
-    m_clock++;
-    if (m_procesoActual != NULL) {
-        m_procesoActual->tick();
+    clock_++;
+    if (proceso_actual_ != NULL) {
+        proceso_actual_->tick();
 
-        if (m_procesoActual->getEstado() == FINALIZADO) {
-            m_proximoProceso();
-        } else if (++m_tiempoProcesoActual > m_quantum) {
-            m_cambiosDeContexto++;
-            m_procesos.push(m_procesoActual);
-            m_proximoProceso();
+        if (proceso_actual_->getEstado() == FINALIZADO) {
+            proximoProceso();
+        } else if (++tiempo_proceso_actual_ > quantum_) {
+            cambios_de_contexto_++;
+            procesos_.push(proceso_actual_);
+            proximoProceso();
         }
     } else {
-        m_proximoProceso();
+        proximoProceso();
     }
 }
 
-void RR::m_proximoProceso() {
-    if (m_procesos.size() == 0) {
-       if (m_procesoActual->getEstado() == FINALIZADO) {
-            m_procesoActual = NULL;
+void RR::proximoProceso() {
+    if (procesos_.size() == 0) {
+       if (proceso_actual_->getEstado() == FINALIZADO) {
+            proceso_actual_ = NULL;
         }
     } else {
-        m_procesoActual = m_procesos.front();
-        m_tiempoProcesoActual = 0;
-        m_procesos.pop();
+        proceso_actual_ = procesos_.front();
+        tiempo_proceso_actual_ = 0;
+        procesos_.pop();
     }
 }
 
 void RR::agregarProceso(Proceso *p) {
-    if (m_procesoActual == NULL) {
-        m_procesoActual = p;
-        m_tiempoProcesoActual = 0;
+    if (proceso_actual_ == NULL) {
+        proceso_actual_ = p;
+        tiempo_proceso_actual_ = 0;
     } else {
-        m_procesos.push(p);
+        procesos_.push(p);
     }
 }
 
 unsigned int RR::getQuantum() {
-    return m_quantum;
+    return quantum_;
 }

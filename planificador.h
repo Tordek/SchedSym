@@ -18,14 +18,16 @@ class Planificador {
         virtual void hacerIO() = 0;
         virtual ~Planificador() { }
 
-        unsigned int getClock() const { return m_clock; }
-        unsigned int getCambiosDeContexto() const { return m_cambiosDeContexto; }
-        unsigned int getCiclosMuertos() const { return m_ciclosMuertos; }
+        unsigned int getClock() const { return clock_; }
+        unsigned int getCambiosDeContexto() const {
+            return cambios_de_contexto_;
+        }
+        unsigned int getCiclosMuertos() const { return ciclos_muertos_; }
 
     protected:
-        unsigned int m_clock;
-        unsigned int m_cambiosDeContexto;
-        unsigned int m_ciclosMuertos;
+        unsigned int clock_;
+        unsigned int cambios_de_contexto_;
+        unsigned int ciclos_muertos_;
 };
 
 #endif  // _PLANIFICADOR_H_

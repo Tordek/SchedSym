@@ -13,26 +13,26 @@
 #define RETRASO_IO 2
 #define DURACION   20
 
-Proceso::Proceso(unsigned int id) : m_id(id),
-                                    m_estado(LISTO),
-                                    m_clock(0),
-                                    m_tiempo_en_io(0) {
+Proceso::Proceso(unsigned int id) : id_(id),
+                                    estado_(LISTO),
+                                    clock_(0),
+                                    tiempo_en_io_(0) {
 }
 
 void Proceso::hacerIO() {
-    if (++m_tiempo_en_io >= RETRASO_IO) {
-        m_estado = LISTO;
+    if (++tiempo_en_io_ >= RETRASO_IO) {
+        estado_ = LISTO;
     }
 }
 
 void Proceso::tick() {
-    if (++m_clock >= DURACION) {
-        m_estado = FINALIZADO;
-    } else if (INICIO_IO < m_clock && m_clock <= FIN_IO) {
-        m_estado = ESPERA_IO;
+    if (++clock_ >= DURACION) {
+        estado_ = FINALIZADO;
+    } else if (INICIO_IO < clock_ && clock_ <= FIN_IO) {
+        estado_ = ESPERA_IO;
     }
 }
 
 Estado Proceso::getEstado() const {
-    return m_estado;
+    return estado_;
 }

@@ -15,14 +15,14 @@ class Proceso {
         explicit Proceso(unsigned int);
         void tick();
         Estado getEstado() const;
-        unsigned int getId() const { return m_id; }
+        unsigned int getId() const { return id_; }
         void hacerIO();
 
     private:
-        unsigned int const m_id;
-        Estado m_estado;
-        int m_clock;
-        int m_tiempo_en_io;
+        unsigned int const id_;
+        Estado estado_;
+        unsigned int clock_;
+        unsigned int tiempo_en_io_;
 };
 
 #endif  // _PROCESO_H_
