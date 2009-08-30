@@ -8,10 +8,10 @@
 
 #include "./proceso.h"
 
-#define INICIO_IO  5
-#define FIN_IO     7
-#define RETRASO_IO 2
-#define DURACION   20
+unsigned int const kInicioIo = 5;
+unsigned int const kFinIo = 7;
+unsigned int const kRetrasoIo = 2;
+unsigned int const kDuracion = 20;
 
 Proceso::Proceso(unsigned int id) : id_(id),
                                     estado_(LISTO),
@@ -20,15 +20,15 @@ Proceso::Proceso(unsigned int id) : id_(id),
 }
 
 void Proceso::hacerIO() {
-    if (++tiempo_en_io_ >= RETRASO_IO) {
+    if (++tiempo_en_io_ >= kRetrasoIo) {
         estado_ = LISTO;
     }
 }
 
 void Proceso::tick() {
-    if (++clock_ >= DURACION) {
+    if (++clock_ >= kDuracion) {
         estado_ = FINALIZADO;
-    } else if (INICIO_IO < clock_ && clock_ <= FIN_IO) {
+    } else if (kInicioIo < clock_ && clock_ <= kFinIo) {
         estado_ = ESPERA_IO;
     }
 }
