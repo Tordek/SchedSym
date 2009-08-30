@@ -12,7 +12,7 @@ enum Estado { kListo, kActivo, kEsperaIo, kFinalizado };
 
 class Proceso {
     public:
-        explicit Proceso(unsigned int);
+        explicit Proceso(unsigned int id);
         void Tick();
         Estado estado() const;
         unsigned int id() const { return id_; }

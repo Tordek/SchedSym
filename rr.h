@@ -26,7 +26,7 @@ class RR : public Planificador {
         void ProximoProceso();
 
         Proceso* proceso_actual_;
-        queue<Proceso *> procesos_;
+        queue<Proceso*> procesos_;
         unsigned int tiempo_proceso_actual_;
         unsigned int const quantum_;
 };

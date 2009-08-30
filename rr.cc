@@ -43,7 +43,7 @@ void RR::ProximoProceso() {
     }
 }
 
-void RR::AgregarProceso(Proceso *p) {
+void RR::AgregarProceso(Proceso* p) {
     if (proceso_actual_ == NULL) {
         proceso_actual_ = p;
         tiempo_proceso_actual_ = 0;

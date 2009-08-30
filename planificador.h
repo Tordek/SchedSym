@@ -13,7 +13,7 @@
 class Planificador {
     public:
         virtual void Tick() = 0;
-        virtual void AgregarProceso(Proceso *p) = 0;
+        virtual void AgregarProceso(Proceso* p) = 0;
         virtual bool HaFinalizado() = 0;
         virtual void HacerIo() = 0;
         virtual ~Planificador() { }

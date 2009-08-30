@@ -13,10 +13,11 @@ unsigned int const kFinIo = 7;
 unsigned int const kRetrasoIo = 2;
 unsigned int const kDuracion = 20;
 
-Proceso::Proceso(unsigned int id) : id_(id),
-                                    estado_(kListo),
-                                    clock_(0),
-                                    tiempo_en_io_(0) {
+Proceso::Proceso(unsigned int id)
+    : id_(id),
+      estado_(kListo),
+      clock_(0),
+      tiempo_en_io_(0) {
 }
 
 void Proceso::HacerIo() {
