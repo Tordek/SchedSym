@@ -19,7 +19,7 @@ void RR::Tick() {
     if (proceso_actual_ != NULL) {
         proceso_actual_->Tick();
 
-        if (proceso_actual_->estado() == FINALIZADO) {
+        if (proceso_actual_->estado() == kFinalizado) {
             ProximoProceso();
         } else if (++tiempo_proceso_actual_ > quantum_) {
             cambios_de_contexto_++;
@@ -33,7 +33,7 @@ void RR::Tick() {
 
 void RR::ProximoProceso() {
     if (procesos_.size() == 0) {
-       if (proceso_actual_->estado() == FINALIZADO) {
+       if (proceso_actual_->estado() == kFinalizado) {
             proceso_actual_ = NULL;
         }
     } else {

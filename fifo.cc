@@ -20,9 +20,9 @@ void FIFO::Tick() {
 
     if (proceso_actual_ == NULL) {
         ProximoProceso();
-    } else if (proceso_actual_->estado() == LISTO) {
+    } else if (proceso_actual_->estado() == kListo) {
         proceso_actual_->Tick();
-    } else if (proceso_actual_->estado() == FINALIZADO) {
+    } else if (proceso_actual_->estado() == kFinalizado) {
         ProximoProceso();
     } else {
         ciclos_muertos_++;
@@ -30,7 +30,7 @@ void FIFO::Tick() {
 }
 
 void FIFO::HacerIo() {
-    if (proceso_actual_->estado() == ESPERA_IO) {
+    if (proceso_actual_->estado() == kEsperaIo) {
         proceso_actual_->HacerIo();
     }
 }

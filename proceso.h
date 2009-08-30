@@ -8,7 +8,7 @@
 #ifndef _PROCESO_H_
 #define _PROCESO_H_
 
-enum Estado { LISTO, ACTIVO, ESPERA_IO, FINALIZADO };
+enum Estado { kListo, kActivo, kEsperaIo, kFinalizado };
 
 class Proceso {
     public:
