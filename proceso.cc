@@ -19,13 +19,13 @@ Proceso::Proceso(unsigned int id) : id_(id),
                                     tiempo_en_io_(0) {
 }
 
-void Proceso::hacerIO() {
+void Proceso::HacerIo() {
     if (++tiempo_en_io_ >= kRetrasoIo) {
         estado_ = LISTO;
     }
 }
 
-void Proceso::tick() {
+void Proceso::Tick() {
     if (++clock_ >= kDuracion) {
         estado_ = FINALIZADO;
     } else if (kInicioIo < clock_ && clock_ <= kFinIo) {
@@ -33,6 +33,6 @@ void Proceso::tick() {
     }
 }
 
-Estado Proceso::getEstado() const {
+Estado Proceso::estado() const {
     return estado_;
 }

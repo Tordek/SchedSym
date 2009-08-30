@@ -12,17 +12,17 @@
 
 class Planificador {
     public:
-        virtual void tick() = 0;
-        virtual void agregarProceso(Proceso *p) = 0;
-        virtual bool haFinalizado() = 0;
-        virtual void hacerIO() = 0;
+        virtual void Tick() = 0;
+        virtual void AgregarProceso(Proceso *p) = 0;
+        virtual bool HaFinalizado() = 0;
+        virtual void HacerIo() = 0;
         virtual ~Planificador() { }
 
-        unsigned int getClock() const { return clock_; }
-        unsigned int getCambiosDeContexto() const {
+        unsigned int clock() const { return clock_; }
+        unsigned int cambios_de_contexto() const {
             return cambios_de_contexto_;
         }
-        unsigned int getCiclosMuertos() const { return ciclos_muertos_; }
+        unsigned int ciclos_muertos() const { return ciclos_muertos_; }
 
     protected:
         unsigned int clock_;

@@ -14,23 +14,23 @@
 int main() {
     Planificador *p = new FIFO();
 
-    p->agregarProceso(new Proceso(0));
-    p->agregarProceso(new Proceso(1));
+    p->AgregarProceso(new Proceso(0));
+    p->AgregarProceso(new Proceso(1));
 
-    while (!p->haFinalizado()) {
-        p->tick();
+    while (!p->HaFinalizado()) {
+        p->Tick();
 
-        if (p->getClock() == 25) {
-            p->agregarProceso(new Proceso(2));
+        if (p->clock() == 25) {
+            p->AgregarProceso(new Proceso(2));
         }
 
-        if (p->getClock() % RETRASO_IO == 0) {
-            p->hacerIO();
+        if (p->clock() % RETRASO_IO == 0) {
+            p->HacerIo();
         }
     }
 
-    printf("Terminado en %i ciclos.\n", p->getClock());
+    printf("Terminado en %i ciclos.\n", p->clock());
     printf("Se realizaron %i cambios de contexto.\n",
-            p->getCambiosDeContexto());
-    printf("Hubo %i ciclos sin actividad.\n", p->getCiclosMuertos());
+            p->cambios_de_contexto());
+    printf("Hubo %i ciclos sin actividad.\n", p->ciclos_muertos());
 }

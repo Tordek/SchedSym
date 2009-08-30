@@ -13,10 +13,10 @@ enum Estado { LISTO, ACTIVO, ESPERA_IO, FINALIZADO };
 class Proceso {
     public:
         explicit Proceso(unsigned int);
-        void tick();
-        Estado getEstado() const;
-        unsigned int getId() const { return id_; }
-        void hacerIO();
+        void Tick();
+        Estado estado() const;
+        unsigned int id() const { return id_; }
+        void HacerIo();
 
     private:
         unsigned int const id_;

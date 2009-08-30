@@ -11,31 +11,31 @@
 
 FIFO::FIFO() {}
 
-bool FIFO::haFinalizado() {
+bool FIFO::HaFinalizado() {
     return proceso_actual_ == NULL && procesos_.size() == 0;
 }
 
-void FIFO::tick() {
+void FIFO::Tick() {
     clock_++;
 
     if (proceso_actual_ == NULL) {
-        proximoProceso();
-    } else if (proceso_actual_->getEstado() == LISTO) {
-        proceso_actual_->tick();
-    } else if (proceso_actual_->getEstado() == FINALIZADO) {
-        proximoProceso();
+        ProximoProceso();
+    } else if (proceso_actual_->estado() == LISTO) {
+        proceso_actual_->Tick();
+    } else if (proceso_actual_->estado() == FINALIZADO) {
+        ProximoProceso();
     } else {
         ciclos_muertos_++;
     }
 }
 
-void FIFO::hacerIO() {
-    if (proceso_actual_->getEstado() == ESPERA_IO) {
-        proceso_actual_->hacerIO();
+void FIFO::HacerIo() {
+    if (proceso_actual_->estado() == ESPERA_IO) {
+        proceso_actual_->HacerIo();
     }
 }
 
-void FIFO::proximoProceso() {
+void FIFO::ProximoProceso() {
     if (procesos_.size() == 0) {
         proceso_actual_ = NULL;
     } else {
@@ -44,7 +44,7 @@ void FIFO::proximoProceso() {
     }
 }
 
-void FIFO::agregarProceso(Proceso *p) {
+void FIFO::AgregarProceso(Proceso *p) {
     if (proceso_actual_ == NULL) {
         proceso_actual_ = p;
     } else {

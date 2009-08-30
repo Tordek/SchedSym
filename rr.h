@@ -16,15 +16,14 @@ using std::queue;
 class RR : public Planificador {
     public:
         explicit RR(unsigned int quantum = 5);
-        unsigned int getQuantum();
-        void setQuantum(unsigned int quantum);
+        unsigned int quantum();
         /* Heredado */
-        virtual void tick();
-        virtual void agregarProceso(Proceso *p);
-        virtual bool haFinalizado();
+        virtual void Tick();
+        virtual void AgregarProceso(Proceso *p);
+        virtual bool HaFinalizado();
 
     private:
-        void proximoProceso();
+        void ProximoProceso();
 
         Proceso* proceso_actual_;
         queue<Proceso *> procesos_;
