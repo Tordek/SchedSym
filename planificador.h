@@ -12,22 +12,26 @@
 
 class Planificador {
     public:
-        virtual void Tick() = 0;
+        void Tick();
+        virtual void TickImplementation() = 0;
         virtual void AgregarProceso(Proceso* p) = 0;
         virtual bool HaFinalizado() = 0;
         virtual void HacerIo() = 0;
         virtual ~Planificador() { }
 
-        unsigned int clock() const { return clock_; }
-        unsigned int cambios_de_contexto() const {
-            return cambios_de_contexto_;
-        }
-        unsigned int ciclos_muertos() const { return ciclos_muertos_; }
+        unsigned int clock() const;
+        unsigned int cambios_de_contexto() const;
+        unsigned int ciclos_muertos() const;
 
     protected:
+        Proceso *proceso_actual();
+        void set_proceso_actual(Proceso* proceso);
+
+    private:
+        Proceso *proceso_actual_;
         unsigned int clock_;
-        unsigned int cambios_de_contexto_;
         unsigned int ciclos_muertos_;
+        unsigned int cambios_de_contexto_;
 };
 
 #endif  // _PLANIFICADOR_H_

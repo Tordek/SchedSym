@@ -12,34 +12,26 @@
 FIFO::FIFO() {}
 
 bool FIFO::HaFinalizado() {
-    return proceso_actual_ == NULL && procesos_.size() == 0;
+    return proceso_actual() == NULL && procesos_.size() == 0;
 }
 
-void FIFO::Tick() {
-    clock_++;
-
-    if (proceso_actual_ == NULL || proceso_actual_->estado() == kFinalizado) {
+void FIFO::TickImplementation() {
+    if (proceso_actual() == NULL || proceso_actual()->estado() == kFinalizado) {
         ProximoProceso();
-    }
-
-    if (proceso_actual_ != NULL && proceso_actual_->estado() == kListo) {
-        proceso_actual_->Tick();
-    } else {
-        ciclos_muertos_++;
     }
 }
 
 void FIFO::HacerIo() {
-    if (proceso_actual_->estado() == kEsperaIo) {
-        proceso_actual_->HacerIo();
+    if (proceso_actual()->estado() == kEsperaIo) {
+        proceso_actual()->HacerIo();
     }
 }
 
 void FIFO::ProximoProceso() {
     if (procesos_.size() == 0) {
-        proceso_actual_ = NULL;
+        set_proceso_actual(NULL);
     } else {
-        proceso_actual_ = procesos_.front();
+        set_proceso_actual(procesos_.front());
         procesos_.pop();
     }
 }

@@ -18,7 +18,7 @@ class RR : public Planificador {
         explicit RR(unsigned int quantum = 5);
         unsigned int quantum();
         /* Heredado */
-        virtual void Tick();
+        virtual void TickImplementation();
         virtual void AgregarProceso(Proceso *p);
         virtual bool HaFinalizado();
         virtual void HacerIo();
@@ -26,7 +26,6 @@ class RR : public Planificador {
     private:
         void ProximoProceso();
 
-        Proceso* proceso_actual_;
         queue<Proceso*> procesos_;
         unsigned int tiempo_proceso_actual_;
         unsigned int const quantum_;
