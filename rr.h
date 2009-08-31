@@ -21,6 +21,7 @@ class RR : public Planificador {
         virtual void Tick();
         virtual void AgregarProceso(Proceso *p);
         virtual bool HaFinalizado();
+        virtual void HacerIo();
 
     private:
         void ProximoProceso();

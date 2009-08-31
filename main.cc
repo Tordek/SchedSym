@@ -6,13 +6,13 @@
  */
 
 #include <cstdio>
-#include "./fifo.h"
-// #include "./rr.h"
+// #include "./fifo.h"
+#include "./rr.h"
 
 #define RETRASO_IO 5
 
 int main() {
-    Planificador *p = new FIFO();
+    Planificador *p = new RR();
 
     p->AgregarProceso(new Proceso(0));
     p->AgregarProceso(new Proceso(1));

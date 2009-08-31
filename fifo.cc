@@ -18,12 +18,12 @@ bool FIFO::HaFinalizado() {
 void FIFO::Tick() {
     clock_++;
 
-    if (proceso_actual_ == NULL) {
+    if (proceso_actual_ == NULL || proceso_actual_->estado() == kFinalizado) {
         ProximoProceso();
-    } else if (proceso_actual_->estado() == kListo) {
+    }
+
+    if (proceso_actual_ != NULL && proceso_actual_->estado() == kListo) {
         proceso_actual_->Tick();
-    } else if (proceso_actual_->estado() == kFinalizado) {
-        ProximoProceso();
     } else {
         ciclos_muertos_++;
     }
@@ -45,9 +45,5 @@ void FIFO::ProximoProceso() {
 }
 
 void FIFO::AgregarProceso(Proceso *p) {
-    if (proceso_actual_ == NULL) {
-        proceso_actual_ = p;
-    } else {
-        procesos_.push(p);
-    }
+    procesos_.push(p);
 }
