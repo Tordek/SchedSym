@@ -14,8 +14,8 @@ unsigned int const kRetrasoIo = 2;
 unsigned int const kDuracion = 20;
 
 Proceso::Proceso(unsigned int id)
-    : id_(id),
-      estado_(kListo),
+    : estado_(kListo),
+      id_(id),
       clock_(0),
       tiempo_en_io_(0) {
 }

@@ -38,12 +38,13 @@ class Proceso {
         unsigned int id() const { return id_; }
 
     protected:
+        /// Estado actual del proceso.
         Estado estado_;
-        unsigned int clock_;
-        unsigned int tiempo_en_io_;
 
     private:
         unsigned int const id_;
+        unsigned int clock_;
+        unsigned int tiempo_en_io_;
 };
 
 #endif  // _PROCESO_H_
