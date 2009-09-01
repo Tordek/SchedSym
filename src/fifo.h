@@ -2,7 +2,6 @@
  *
  * SchedSym - Simulador de Planificacion de Procesos.
  *
- * Planificador trivial: FIFO.
  */
 
 #ifndef _FIFO_H_
@@ -13,6 +12,9 @@
 
 using std::queue;
 
+/// Planificador tivial: FIFO
+///
+/// Este planificador ejecuta un proceso hasta que éste finalice.
 class FIFO : public Planificador {
     public:
         FIFO();

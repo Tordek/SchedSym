@@ -13,9 +13,17 @@
 
 using std::queue;
 
+/// Planificador simple: Round Robin.
+
+/// Este planificador ejecuta un proceso hasta que éste finalice, o su
+/// \e quantum se agote.
 class RR : public Planificador {
     public:
+        /// Constructor.
+        /// \param quantum El \e quantum asignado a cada proceso.
         explicit RR(unsigned int quantum = 5);
+        /// Accesor de \e quantum
+        /// \return quantum correspondiente al planificador.
         unsigned int quantum();
         /* Heredado */
         virtual void TickImplementation();

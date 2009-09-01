@@ -24,10 +24,10 @@ Proceso* Planificador::proceso_actual() {
 }
 
 void Planificador::set_proceso_actual(Proceso* proceso) {
-    if(proceso != 0 &&
-       proceso_actual_ != 0 &&
-       proceso_actual_->estado() != kFinalizado &&
-       proceso != proceso_actual_) {
+    if (proceso != 0 &&
+        proceso_actual_ != 0 &&
+        proceso_actual_->estado() != kFinalizado &&
+        proceso != proceso_actual_) {
         cambios_de_contexto_++;
     }
 

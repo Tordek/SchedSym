@@ -2,17 +2,22 @@
  *
  * SchedSym - Simulador de Planificacion de Procesos.
  *
- * Función main();
  */
 
+/// \mainpage
+/// \author Guillermo O. Freschi
+/// \version 0.1
+///
+/// SchedSym es un framework para analizar Planificadores de Procesos.
+
 #include <cstdio>
-// #include "./fifo.h"
+#include "./fifo.h"
 #include "./rr.h"
 
 #define RETRASO_IO 5
 
 int main() {
-    Planificador *p = new RR();
+    Planificador *p = new FIFO();
 
     p->AgregarProceso(new Proceso(0));
     p->AgregarProceso(new Proceso(1));
