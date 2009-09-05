@@ -12,7 +12,7 @@ void Planificador::Tick() {
 
     TickImplementation();
 
-    if (proceso_actual_ != 0 && proceso_actual_->estado() == kListo) {
+    if (proceso_actual_ != 0 && proceso_actual_->estado() == Proceso::kListo) {
         proceso_actual_->Tick();
     } else {
         ciclos_muertos_++;
@@ -24,10 +24,9 @@ Proceso* Planificador::proceso_actual() {
 }
 
 void Planificador::set_proceso_actual(Proceso* proceso) {
-    if (proceso != 0 &&
-        proceso_actual_ != 0 &&
-        proceso_actual_->estado() != kFinalizado &&
-        proceso != proceso_actual_) {
+    if (proceso_actual_ != 0 &&
+        proceso_actual_ != proceso &&
+        proceso_actual_->estado() != Proceso::kFinalizado) {
         cambios_de_contexto_++;
     }
 

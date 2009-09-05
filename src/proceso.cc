@@ -34,6 +34,6 @@ void Proceso::Tick() {
     }
 }
 
-Estado Proceso::estado() const {
+Proceso::Estado Proceso::estado() const {
     return estado_;
 }

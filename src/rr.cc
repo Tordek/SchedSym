@@ -15,7 +15,8 @@ bool RR::HaFinalizado() {
 }
 
 void RR::TickImplementation() {
-    if (proceso_actual() == NULL || proceso_actual()->estado() == kFinalizado) {
+    if (proceso_actual() == NULL ||
+        proceso_actual()->estado() == Proceso::kFinalizado) {
         ProximoProceso();
     } else if (++tiempo_proceso_actual_ > quantum_) {
         procesos_.push(proceso_actual());
@@ -39,7 +40,7 @@ void RR::AgregarProceso(Proceso* p) {
 }
 
 void RR::HacerIo() {
-    if (proceso_actual()->estado() == kEsperaIo) {
+    if (proceso_actual()->estado() == Proceso::kEsperaIo) {
         proceso_actual()->HacerIo();
     }
 }

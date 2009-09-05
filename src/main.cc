@@ -6,7 +6,6 @@
 
 /// \mainpage
 /// \author Guillermo O. Freschi
-/// \version 0.1
 ///
 /// SchedSym es un framework para analizar Planificadores de Procesos.
 
@@ -16,8 +15,8 @@
 
 #define RETRASO_IO 5
 
-int main() {
-    Planificador *p = new FIFO();
+int main() throw () {
+    Planificador *p = new RR();
 
     p->AgregarProceso(new Proceso(0));
     p->AgregarProceso(new Proceso(1));

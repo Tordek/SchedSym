@@ -7,12 +7,12 @@
 #ifndef _PROCESO_H_
 #define _PROCESO_H_
 
-/// Enumeración que representa el estado actual de un proceso.
-enum Estado { kListo, kActivo, kEsperaIo, kFinalizado };
-
 /// Proceso simulado.
 class Proceso {
     public:
+        /// Enumeración que representa el estado actual de un proceso.
+        enum Estado { kListo, kActivo, kEsperaIo, kFinalizado };
+
         /// Constructor estándar.
         ///
         /// \param id Id de proceso.
