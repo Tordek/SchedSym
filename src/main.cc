@@ -9,13 +9,16 @@
 ///
 /// SchedSym es un framework para analizar Planificadores de Procesos.
 
-#include <cstdio>
+#include <boost/format.hpp>
+
+#include <iostream>
+
 #include "./fifo.h"
 #include "./rr.h"
 
 #define RETRASO_IO 5
 
-int main() throw () {
+int main() {
     Planificador *p = new RR();
 
     p->AgregarProceso(new Proceso(0));
@@ -33,8 +36,9 @@ int main() throw () {
         }
     }
 
-    printf("Terminado en %i ciclos.\n", p->clock());
-    printf("Se realizaron %i cambios de contexto.\n",
-            p->cambios_de_contexto());
-    printf("Hubo %i ciclos sin actividad.\n", p->ciclos_muertos());
+    std::cout << boost::format("Terminado en %1$i ciclos.\n") % p->clock();
+    std::cout << boost::format("Se realizaron %1$i cambios de contexto.\n")
+        % p->cambios_de_contexto();
+    std::cout << boost::format("Hubo %1$i ciclos sin actividad.\n")
+        % p->ciclos_muertos();
 }
